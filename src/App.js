@@ -1,24 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import ProductDetails from './pages/ProductDetails';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import UserDashboard  from './pages/UserDashboard';
+import AdminDashboard  from './pages/AdminDashboard';
+import Profile from './pages/Profile'
+import ProductsCat from './pages/ProductsCat';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from './context/ThemeContext'; // Import ThemeProvider
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <AuthProvider>
+      <Router>
+        <Navbar />
+        <ToastContainer />
+      
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products_cat/:category" element={<ProductsCat />} />
+
+          {/* Wrap the protected route in PrivateRoute */}
+          <Route
+            path="/product/:id"
+            element={
+            <PrivateRoute>
+              <ProductDetails />
+            </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/userdashboard"
+            element={
+            <PrivateRoute>
+              <UserDashboard />
+            </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admindashboard"
+            element={
+            <PrivateRoute>
+              <AdminDashboard />
+            </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+            }
+          />
+        </Routes>
+
+        <Footer />
+      </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

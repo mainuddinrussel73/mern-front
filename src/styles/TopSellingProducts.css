@@ -1,0 +1,32 @@
+.top-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin-right: 10px;
+}
