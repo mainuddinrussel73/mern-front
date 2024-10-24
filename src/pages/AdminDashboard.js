@@ -152,7 +152,7 @@ const AdminDashboard  = () => {
   const handleDeleteUser = async (id) => {
 
     try {
-      const response = await axios.delete(`http://localhost:5000/api/auth/users/${id}`, {
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/auth/users/${id}`, {
         data: {
           userRole, // Send userId in the body
         },
