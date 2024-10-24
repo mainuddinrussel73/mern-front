@@ -9,6 +9,8 @@ import axios from 'axios'; // For making API calls
 import { Helmet } from 'react-helmet';
 import { MdClose } from 'react-icons/md';
 import { FaBagShopping } from "react-icons/fa6";
+import Loading from '../components/Loading';
+import ErrorLoadingData from './ErrorLoadingData';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -42,7 +44,7 @@ const ProductDetails = () => {
         try {
             const token = await currentUser.getIdToken(); // Get Firebase token
             console.log(token);
-            const response = await fetch(`http://localhost:5000/api/products/product/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products/product/${id}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -142,12 +144,10 @@ const ProductDetails = () => {
       toast.error('Purchase failed. Please try again.');
     }
   };
-  if (loading) {
-      return <div>Loading...</div>;
-  }
+  if (loading) return <Loading />;
 
-  if (error) {
-      return <div>Error: {error}</div>;
+  if(error){
+    return <ErrorLoadingData/>;
   }
 
   if (!currentUser) {

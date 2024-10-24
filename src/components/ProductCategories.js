@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 const ProductCategories = () => {
   const [categories, setCategories] = useState([]);
   const cate = [
@@ -22,7 +23,7 @@ const ProductCategories = () => {
   ];
   useEffect(() => {
     // Fetch categories from backend
-    fetch('http://localhost:5000/api/categories')
+    fetch(process.env.REACT_APP_API_URL+'/api/categories')
       .then(res => res.json())
       .then(data => setCategories(data.data));
   }, []);

@@ -11,6 +11,8 @@ import Profile from './pages/Profile'
 import ProductsCat from './pages/ProductsCat';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import NotFound from './components/NotFound'; // Your 404 page
+
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import { ToastContainer, toast } from 'react-toastify';
@@ -65,6 +67,7 @@ function App() {
             </PrivateRoute>
             }
           />
+           <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />

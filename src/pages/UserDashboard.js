@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import  axios  from 'axios';
 import '../styles/UserDashboard.css'
 import { Helmet } from 'react-helmet';
+import Loading from '../components/Loading';
+
 
 const UserDashboard  = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -24,7 +26,7 @@ const UserDashboard  = () => {
       try {
         const token = await currentUser.getIdToken();
         
-        const response = await axios.get(`http://localhost:5000/api/purchases/userpurchase` , {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/purchases/userpurchase` , {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,7 +55,7 @@ const UserDashboard  = () => {
     setCurrentPage(pageNumber);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
   if (error) return <div>{error}</div>;
 
   const handleLogout = async () => {

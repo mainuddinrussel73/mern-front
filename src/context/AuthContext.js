@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { signOut,getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
+
 // Create the context
 export const AuthContext = createContext();
 
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
                 console.log(user);
                 try{
                 const token = await user.getIdToken();
-                const response = await axios.get(`http://localhost:5000/api/auth/user/${user.uid}`, {
+                const response = await axios.get(process.env.REACT_APP_API_URL+`/api/auth/user/${user.uid}`, {
                   headers: { Authorization: `Bearer ${token}` },
                 });
                 setUserRole(response.data._user.role); // Assuming role is in the response

@@ -7,11 +7,14 @@ import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 import { IoIosPricetags } from "react-icons/io";
 import { MdClose } from 'react-icons/md';
-
+import Loading from '../components/Loading';
+import ErrorLoadingData from './ErrorLoadingData';
 
 const AdminDashboard  = () => {
 
   const { currentUser,userRole, logout } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -104,7 +107,7 @@ const AdminDashboard  = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/users', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/users`, {
         data: {
           userForm,
           userRole, // Send userId in the body
@@ -127,7 +130,7 @@ const AdminDashboard  = () => {
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5000/api/auth/users/${editUserId}`, {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/auth/users/${editUserId}`, {
         data: {
           userForm,
           userRole, // Send userId in the body
@@ -180,10 +183,12 @@ const AdminDashboard  = () => {
 
   const fetchUsers = async () => {
     try{
-      const response = await axios.get('http://localhost:5000/api/auth/users');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/users`);
       console.log(response);
       if(response.data.success){
         setUsers(response.data.users);
+        setLoading(false);
+
       }else{
         toast.error(response.data.message);
       }
@@ -197,9 +202,11 @@ const AdminDashboard  = () => {
   // Fetch all products
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`);
       if(response.data.ok){
         setProducts(response.data.data);
+        setLoading(false);
+
       }else{
         toast.error(response.data.message);
       }
@@ -212,9 +219,11 @@ const AdminDashboard  = () => {
   // Fetch all categories
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/categories');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories`);
       if(response.data.ok){
         setCategories(response.data.data);
+        setLoading(false);
+
       }else{
         toast.error(response.data.message);
       }
@@ -231,7 +240,7 @@ const AdminDashboard  = () => {
     try {
       if (editingProductId) {
         // Update product
-        await axios.put(`http://localhost:5000/api/products/${editingProductId}`, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/products/${editingProductId}`, {
           data: {
             formData,
             userRole, // Send userId in the body
@@ -240,7 +249,7 @@ const AdminDashboard  = () => {
         toast.success('Product updated successfully');
       } else {
         // Add new product
-        await axios.post('http://localhost:5000/api/products/create',{
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/products/create`,{
           data: {
             formData,
             userRole, // Send userId in the body
@@ -274,7 +283,7 @@ const AdminDashboard  = () => {
   // Delete product
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${productId}`,{
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/products/${productId}`,{
         data: {
           userRole, // Send userId in the body
         },
@@ -292,7 +301,7 @@ const AdminDashboard  = () => {
     if (editingCategoryId) {
       // Update category logic here
       try {
-        await axios.put(`http://localhost:5000/api/categories/${editingCategoryId}`,{
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/categories/${editingCategoryId}`,{
           data: {
             categoryForm,
             userRole, // Send userId in the body
@@ -308,7 +317,7 @@ const AdminDashboard  = () => {
     } else {
       // Add category logic here
       try {
-        await axios.post('http://localhost:5000/api/categories/create',{
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/categories/create`,{
           data: {
             categoryForm,
             userRole, // Send userId in the body
@@ -337,7 +346,7 @@ const AdminDashboard  = () => {
   const handleDeleteCategory = async(categoryId) => {
     // Delete category logic here
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${categoryId}`,{
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/categories/${categoryId}`,{
         data: {
           userRole, // Send userId in the body
         },
@@ -349,7 +358,11 @@ const AdminDashboard  = () => {
       toast.error('Error deleting category');
     }
   };
-  
+  if (loading) return <Loading />;
+
+  if(error){
+    return <ErrorLoadingData/>;
+  }
   return (
     userRole === 'admin' ? (
       <div className="admin-dashboard p-6 min-h-screen  bg-gray-100 dark:bg-gray-900">

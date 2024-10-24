@@ -39,7 +39,7 @@ const Login = () => {
       const token = await user.getIdToken();
 
       // Fetch user details from the backend, sending the token for authorization
-      const response = await fetch(`http://localhost:5000/api/auth/login/${user.uid}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login/${user.uid}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

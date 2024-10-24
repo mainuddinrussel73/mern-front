@@ -25,7 +25,7 @@ const TopSellingProducts = () => {
                 limit: 10
             }).toString();
 
-            fetch(`http://localhost:5000/api/purchasehighlight/top-selling-products?${query}`)
+            fetch(process.env.REACT_APP_API_URL+`/api/purchasehighlight/top-selling-products?${query}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch top-selling products');

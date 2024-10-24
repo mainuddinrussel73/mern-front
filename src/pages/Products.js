@@ -2,18 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { FaStar, FaTag } from 'react-icons/fa';
-
+import Loading from '../components/Loading';
+import ErrorLoadingData from './ErrorLoadingData';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    console.log(process.env.REACT_APP_API_URL);
+    fetch(`${process.env.REACT_APP_API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         if(data.ok){
           setProducts(data.data);
+          setLoading(false);
 
         }else{
           setError(true);
@@ -21,11 +25,10 @@ const Products = () => {
 
       });
   }, []);
-  if (!products) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <Loading />;
+
   if(error){
-    return <div>Error Loading Data!</div>;
+    return <ErrorLoadingData/>;
   }
   return (
     <div className="container mx-auto p-8 bg-gray-100 dark:bg-gray-900">

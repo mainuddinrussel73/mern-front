@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { FaStar, FaTag } from 'react-icons/fa';
+import Loading from '../components/Loading';
+import ErrorLoadingData from './ErrorLoadingData';
 
 const ProductsCat = () => {
   const { category } = useParams();
   const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [filters, setFilters] = useState({
     category: category
    });
@@ -17,24 +20,26 @@ const ProductsCat = () => {
         ...filters,
     }).toString();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/productsByCategory?${query}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/products/productsByCategory?${query}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
         if(data.ok){
             setProducts(data.data);
+            setLoading(false);
+
         }else{
             setError(true);
+            setLoading(false);
         }
         
       });
   }, [category]);
 
-  if (!products) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <Loading />;
+
   if(error){
-    return <div>Error Loading Data!</div>;
+    return <ErrorLoadingData/>;
   }
   return (
     <div className="container mx-auto p-8 bg-gray-100 dark:bg-gray-900">

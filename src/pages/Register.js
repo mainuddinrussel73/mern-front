@@ -52,7 +52,7 @@ const Register = () => {
       };
 
       // Send user details to the backend (MongoDB) to store user profile
-      const response = await axios.post(`http://localhost:5000/api/auth/register`, userDetails, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userDetails, {
         headers: {
           'Content-Type': 'application/json'
         }
