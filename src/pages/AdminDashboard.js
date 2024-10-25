@@ -42,6 +42,7 @@ const AdminDashboard  = () => {
     name: '',
     email: '',
     password: '',
+    profilePicture: '',
     countryCode: '',
     phone: '',
     address: '',
@@ -69,7 +70,7 @@ const AdminDashboard  = () => {
     setShowModal(false);
     setEditMode(false);
     setFormData({ name: '', description: '', price: '', imageUrl: '', category: '', rating: '' });
-    setUserForm({ name: '', email: '', password: '', countryCode : '', phone: '', address: '', role: 'user', firebaseUid: '' });
+    setUserForm({ name: '', email: '', profilePicture: '', password: '', countryCode : '', phone: '', address: '', role: 'user', firebaseUid: '' });
   };
 
   useEffect(() => {
@@ -116,7 +117,7 @@ const AdminDashboard  = () => {
       setEditUserId(null);
       setEditMode(false);
       toast.success('User added successfully');
-      setUserForm({ name: '',password : '', email: '', countryCode: '', phone: '', address: '', role: 'user', firebaseUid: '' });
+      setUserForm({ name: '',password : '', profilePicture : '', email: '', countryCode: '', phone: '', address: '', role: 'user', firebaseUid: '' });
       fetchUsers(); // Refresh the product list
       closeModal();
     } catch (error) {
@@ -137,7 +138,7 @@ const AdminDashboard  = () => {
         }
       });
       setEditMode(false);
-      setUserForm({ name: '',password : '', email: '',countryCode: '', phone: '', address: '', role: 'user', firebaseUid: '' });
+      setUserForm({ name: '',password : '', email: '',countryCode: '', profilePicture: '', phone: '', address: '', role: 'user', firebaseUid: '' });
       setEditUserId(null);
       toast.success('User added successfully');
       fetchUsers(); // Refresh the product list
@@ -173,6 +174,7 @@ const AdminDashboard  = () => {
       name: user.name,
       email: user.email,
       countryCode: user.countryCode,
+      profilePicture : user.profilePicture,
       phone: user.phone,
       password : '',
       address: user.address,
@@ -498,6 +500,16 @@ const AdminDashboard  = () => {
                     value={userForm.name}
                     onChange={handleInputChange}
                     placeholder="Name"
+                    required
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+
+                  />
+                  <input
+                    type="text"
+                    name="profilePicture"
+                    value={userForm.profilePicture}
+                    onChange={handleInputChange}
+                    placeholder="Profile Picture"
                     required
                     className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
 
