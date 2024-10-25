@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios'; // Import axios
+import { Helmet } from 'react-helmet';
 
 
 const Login = () => {
@@ -145,6 +146,10 @@ const Login = () => {
 
   return (
     <div class="font-[sans-serif] bg-gray-100 dark:bg-gray-900">
+       <Helmet>
+        <title>Login Page</title>
+        <meta name="Userdashboard" content="Userdashboard" />
+      </Helmet>
       <div class="min-h-screen flex flex-col items-center justify-center">
         <div class="items-center flex flex-col items-center justify-center bg-white p-6 shadow-sm dark:bg-gray-800 w-auto p-4 m-4 rounded-md">
           {error && <p className="text-red-500 mb-4">{error}</p>}

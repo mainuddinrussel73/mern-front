@@ -32,9 +32,15 @@ const Navbar = () => {
             <HiMiniWallet className="inline-block mr-1" /> All Products
           </Link>
           {currentUser && userRole === "admin" ? (
-            <Link to="/admindashboard" className="dark:bg-gray-800 dark:text-white text-black bg-white   transition duration-300 ease-in-out">
-              <TbLayoutDashboardFilled className="inline-block mr-1" /> Admin Dashboard
-            </Link>
+            <>
+                <Link to="/admindashboard" className="dark:bg-gray-800 dark:text-white text-black bg-white   transition duration-300 ease-in-out">
+                    <TbLayoutDashboardFilled className="inline-block mr-1" /> Admin Dashboard
+                </Link>
+                <Link to="/userdashboard" className="dark:bg-gray-800 dark:text-white text-black bg-white   transition duration-300 ease-in-out">
+                  <FaUser className="inline-block mr-1" /> User Dashboard
+                </Link>
+            </>
+            
           ) : currentUser ? (
             <Link to="/userdashboard" className="dark:bg-gray-800 dark:text-white text-black bg-white   transition duration-300 ease-in-out">
               <FaUser className="inline-block mr-1" /> User Dashboard

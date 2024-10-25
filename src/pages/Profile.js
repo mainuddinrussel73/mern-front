@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { FaPhoneAlt, FaEnvelope, FaHome, FaCalendarAlt, FaEdit, FaSignOutAlt } from 'react-icons/fa'; // Import FontAwesome icons
 import { MdClose, MdImage } from 'react-icons/md'; // Import Material Design icons
+import { Helmet } from 'react-helmet';
 
 
 const Profile = () => {
@@ -94,6 +95,10 @@ const Profile = () => {
 
   return (
     <div className='container mx-auto p-8  bg-gray-100 dark:bg-gray-900'>
+       <Helmet>
+        <title>Profile {userForm.name}</title>
+        <meta name="Userdashboard" content="Userdashboard" />
+      </Helmet>
       <header className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold dark:bg-gray-900 text-black dark:text-white ">Profile</h2>
           <button
