@@ -1,5 +1,6 @@
 // src/components/BannerSlider.js
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 const banners = [
   {
@@ -7,21 +8,21 @@ const banners = [
     description: "Discover a wide range of products including books, courses, and more!",
     imageUrl: "https://media.istockphoto.com/id/1133980246/photo/shopping-online-concept-shopping-service-on-the-online-web-with-payment-by-credit-card-and.jpg?s=612x612&w=0&k=20&c=joeQ74hTCWThhW6XfnBsCUc5Qp3YB868J-hyBWxGSUM=",
     buttonLabel: "Explore Products",
-    link: "/all-products",
+    link: "/products",
   },
   {
     title: "Exclusive Deals on Electronics",
     description: "Find amazing deals on the latest computers, mobiles, and more!",
     imageUrl: "https://media.istockphoto.com/id/1249219777/photo/shopping-online-concept-parcel-or-paper-cartons-with-a-shopping-cart-logo-in-a-trolley-on-a.jpg?s=612x612&w=0&k=20&c=EWKEahyVLY8iAHyirCCDESHRGW37lqUJ7In0SssNSLE=",
     buttonLabel: "Shop Electronics",
-    link: "/electronics",
+    link: "/products",
   },
   {
     title: "Recycle Your Products",
     description: "Help save the environment by recycling your old products with us!",
     imageUrl: "https://media.istockphoto.com/id/1362936402/photo/young-freelance-asian-woman-using-laptop-packing-cardboard-box-in-living-room-at-home-at.jpg?s=612x612&w=0&k=20&c=qrrsOUh0UiaUGmRUXE-DTmd8wlJMqU3CnB6UPpBU5ZQ=",
     buttonLabel: "Recycle Now",
-    link: "/recycle",
+    link: "/products",
   },
 ];
 
@@ -51,12 +52,12 @@ const Banner = () => {
         <h1 className="text-4xl font-bold sm:text-6xl">{banners[currentBanner].title}</h1>
         <p className="mt-4 text-xl sm:text-2xl max-w-xl">{banners[currentBanner].description}</p>
 
-        <a
-          href={banners[currentBanner].link}
+        <Link
+          to={banners[currentBanner].link}
           className="mt-6 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition duration-300"
         >
           {banners[currentBanner].buttonLabel}
-        </a>
+        </Link>
       </div>
 
       {/* Indicator Dots */}

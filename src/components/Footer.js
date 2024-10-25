@@ -22,7 +22,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="/computers" className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
+                <a to={`/products_cat/Computers`} className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
                   Computers
                 </a>
               </li>
@@ -39,24 +39,24 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a href="/about" className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/privacy" className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/terms" className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 hover:text-gray-800">
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
@@ -66,24 +66,24 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a href="/faq" className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
                   FAQ
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/help" className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/returns" className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
                   Returns & Refunds
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/shipping" className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
+                <Link to={`/aboutus`} className="dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50 hover:text-gray-800">
                   Shipping Info
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
