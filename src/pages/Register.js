@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios'; // Import axios
 import { AuthContext } from '../context/AuthContext';
+import { IoMdEye,IoMdEyeOff } from "react-icons/io";
 
 
 const Register = () => {
@@ -13,6 +14,11 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const [phone, setPhone] = useState('');
   const [profilePicture, setprofilePicture] = useState('');
   const [coverPicture, setcoverPicture] = useState('');
@@ -130,7 +136,7 @@ const Register = () => {
             <div>
               <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Name</label>
               <div class="relative flex items-center">
-                <input name="name"   value={name} onChange={(e) => setName(e.target.value)} type="text" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"  placeholder="Enter email" />
+                <input name="name"   value={name} onChange={(e) => setName(e.target.value)} type="text" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"  placeholder="Enter name" />
                 
               </div>
             </div>
@@ -138,18 +144,22 @@ const Register = () => {
             <div class="mt-8">
               <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Email</label>
               <div class="relative flex items-center">
-                <input name="email" value={email} onChange={(e) => setEmail(e.target.value)}  type="email" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter password" />
+                <input name="email" value={email} onChange={(e) => setEmail(e.target.value)}  type="email" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter email" />
                
               </div>
+            </div>
+            <div class="mt-8">
+                <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Password</label>
+                <div class="relative flex items-center">
+                  <input name="password" onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? 'text' : 'password'} required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter password" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128"
+                    onClick={togglePasswordVisibility} >
+                    {showPassword ? <IoMdEyeOff color={'#bbb'} size={124} /> : <IoMdEye color={'#bbb'} size={124} />}
+                  </svg>
+                </div>
             </div>
 
-            <div class="mt-8">
-              <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Password</label>
-              <div class="relative flex items-center">
-                <input name="password" value={password} onChange={(e) => setPassword(e.target.value)}  type="password" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter password" />
-               
-              </div>
-            </div>
+            
 
             <div class="mt-8">
             <div className="flex space-x-4">
@@ -188,7 +198,7 @@ const Register = () => {
             <div class="mt-8">
               <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Address</label>
               <div class="relative flex items-center">
-                <textarea name="address" value={address} onChange={(e) => setAddress(e.target.value)}  type="text" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter password" />
+                <textarea name="address" value={address} onChange={(e) => setAddress(e.target.value)}  type="text" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter address" />
                
               </div>
             </div>

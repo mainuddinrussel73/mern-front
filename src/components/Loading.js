@@ -4,9 +4,10 @@ import '../styles/Loading.css'; // Optional for styling
 
 const Loading = () => {
   return (
-    <div className="loading-container">
-      <div className="loading-spinner"></div>
-      <p>Loading...</p>
+    <div className="loading-container bg-gray-100 dark:bg-gray-900">
+      <span class="loader"></span>
+
+      <p className='text-black dark:text-white'>Loading...</p>
     </div>
   );
 };
