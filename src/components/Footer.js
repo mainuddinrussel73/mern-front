@@ -91,7 +91,7 @@ const Footer = () => {
       </div>
       <div className="border-t border-gray-200">
         <div className=" px-5 py-8 flex flex-wrap mx-auto items-center">
-          <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
+          <div className="container flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
             <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
               <label htmlFor="footer-field" className="leading-7 text-sm dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50">
                 Subscribe
@@ -107,7 +107,7 @@ const Footer = () => {
             <button className="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded">
               Subscribe
             </button>
-            <p className="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">
+            <p className="ml-4 text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">
               Get the latest updates on new products and offers.
             </p>
           </div>
