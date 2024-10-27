@@ -15,10 +15,24 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [formErrors, setFormErrors] = useState({});
+
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+  const validate = () => {
+    const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!email || !emailRegex.test(email)) errors.email = "Enter a valid email";
+    if (!password || !passwordRegex.test(password))
+      errors.password = "Password must have at least 8 characters, including uppercase, lowercase, number, and special character";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,6 +44,12 @@ const Login = () => {
     }
   }, [currentUser, navigate]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      handleLogin(e);
+    }
+  };
   // Function to handle login
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -160,7 +180,7 @@ const Login = () => {
         <div class="items-center flex flex-col items-center justify-center bg-white p-6 shadow-sm dark:bg-gray-800 w-auto p-4 m-4 rounded-md">
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <div class="md:max-w-md w-full px-4 py-4">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit}>
               <div class="mb-12">
                 <h3 class="text-gray-800 dark:text-slate-50	  text-3xl font-extrabold">Sign in</h3>
                 <p class="text-sm mt-4 text-gray-900 dark:text-stone-400">Don't have an account <Link to={'/register'} class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Register here</Link></p>
@@ -182,6 +202,8 @@ const Login = () => {
                     </g>
                   </svg>
                 </div>
+                {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
+
               </div>
 
               <div class="mt-8">
@@ -192,6 +214,8 @@ const Login = () => {
                     {showPassword ? "🙈" : "👁️"}
                   </span>
                 </div>
+                {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
+
               </div>
 
               <div class="flex flex-wrap items-center justify-between gap-4 mt-6">

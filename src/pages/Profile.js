@@ -115,7 +115,7 @@ const Profile = () => {
         </button>
       </header>
 
-      <div className="profile-page p-6 max-w-lg mx-auto bg-white dark:bg-gray-800 mt-6 mb-6 shadow-lg rounded-lg">
+      <div className="profile-page p-6 max-w-lg mx-auto bg-white dark:bg-gray-800 mt-6 mb-6  rounded-lg">
         {isLoading ? (
           // Loading Skeletons
           <div>

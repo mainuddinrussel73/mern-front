@@ -141,7 +141,19 @@ const UserDashboard  = () => {
         
         </>
       ) : (
-        <p>You haven’t purchased anything yet.</p>
+        <div class="flex items-center  max-w-4xl rounded-lg  p-6 mb-6  mx-auto justify-center  bg-gray-100 dark:bg-gray-900">
+          <div class=" max-w-4xl rounded-lg  p-6 mb-6  mx-auto text-center bg-white dark:bg-gray-800 rounded-lg">
+            <h1 class="text-2xl font-bold text-gray-800  dark:text-slate-100 mb-2">You Haven’t Purchased Anything Yet</h1>
+            <p class="text-gray-600 dark:text-slate-300 mb-6">Explore our products and find something you love!</p>
+            <Link 
+              class="px-6 py-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+              to={'/products'}
+            >
+              Browse Products
+            </Link>
+          </div>
+        </div>
+        
       )}
     </div>
   );
