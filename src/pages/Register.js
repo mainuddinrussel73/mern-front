@@ -6,10 +6,13 @@ import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios'; // Import axios
 import { AuthContext } from '../context/AuthContext';
 import { IoMdEye,IoMdEyeOff } from "react-icons/io";
+import { Helmet } from 'react-helmet';
 
 
 const Register = () => {
   const { currentUser } = useContext(AuthContext); // Access context to update the current user
+
+  const [formErrors, setFormErrors] = useState({});
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,6 +21,22 @@ const Register = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+  const validate = () => {
+    const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{7,15}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!name) errors.name = "Name is required";
+    if (!email || !emailRegex.test(email)) errors.email = "Enter a valid email";
+    if (!password || !passwordRegex.test(password))
+      errors.password = "Password must have at least 8 characters, including uppercase, lowercase, number, and special character";
+    if (!phone || !phoneRegex.test(phone)) errors.phone = "Enter a valid phone number (7-15 digits)";
+    if (!address) errors.address = "Address is required";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
   const [phone, setPhone] = useState('');
   const [profilePicture, setprofilePicture] = useState('');
@@ -36,6 +55,12 @@ const Register = () => {
       navigate('/'); // Change to your preferred route
     }
   }, [currentUser, navigate]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      handleRegister(e);
+    }
+  };
   // Function to handle registration
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -123,11 +148,15 @@ const Register = () => {
 
   return (
     <div class="font-[sans-serif] bg-gray-100 dark:bg-gray-900">
+      <Helmet>
+        <title>Register Page</title>
+        <meta name="Userdashboard" content="Userdashboard" />
+      </Helmet>
     <div class="min-h-screen flex flex-col items-center justify-center">
       <div class="items-center flex flex-col items-center justify-center bg-white p-6 shadow-sm dark:bg-gray-800 w-auto p-4 m-4 rounded-md">
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div class="md:max-w-md w-full px-4 py-4">
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleSubmit}>
             <div class="mb-12">
               <h3 class="text-gray-800 dark:text-slate-50	  text-3xl font-extrabold">Sign up</h3>
               <p class="text-sm mt-4 text-gray-900 dark:text-stone-400">Have an account? <Link to={'/login'} class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Sign in here</Link></p>
@@ -139,6 +168,8 @@ const Register = () => {
                 <input name="name"   value={name} onChange={(e) => setName(e.target.value)} type="text" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"  placeholder="Enter name" />
                 
               </div>
+              {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
+
             </div>
 
             <div class="mt-8">
@@ -147,22 +178,25 @@ const Register = () => {
                 <input name="email" value={email} onChange={(e) => setEmail(e.target.value)}  type="email" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter email" />
                
               </div>
+              {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
+
             </div>
             <div class="mt-8">
                 <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Password</label>
                 <div class="relative flex items-center">
                   <input name="password" onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? 'text' : 'password'} required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter password" />
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128"
-                    onClick={togglePasswordVisibility} >
-                    {showPassword ? <IoMdEyeOff color={'#bbb'} size={124} /> : <IoMdEye color={'#bbb'} size={124} />}
-                  </svg>
+                  <span onClick={togglePasswordVisibility} className="cursor-pointer absolute right-2">
+                    {showPassword ? "🙈" : "👁️"}
+                  </span>
                 </div>
+                {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
+
             </div>
 
             
 
             <div class="mt-8">
-            <div className="flex space-x-4">
+                  <div className="flex space-x-4">
                     {/* Country Code Dropdown */}
                     <select
                       name="countryCode"
@@ -194,6 +228,8 @@ const Register = () => {
                       className="w-3/4 p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
                       />
                   </div>
+                  {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
+
             </div>
             <div class="mt-8">
               <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Address</label>
@@ -201,6 +237,8 @@ const Register = () => {
                 <textarea name="address" value={address} onChange={(e) => setAddress(e.target.value)}  type="text" required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter address" />
                
               </div>
+              {formErrors.address && <p className="text-red-500 text-xs mt-1">{formErrors.address}</p>}
+
             </div>
 
             <div class="flex flex-wrap items-center justify-between gap-4 mt-6">

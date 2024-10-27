@@ -188,10 +188,9 @@ const Login = () => {
                 <label class="text-gray-900 dark:text-stone-400 text-xs block mb-2">Password</label>
                 <div class="relative flex items-center">
                   <input name="password" onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? 'text' : 'password'} required className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" placeholder="Enter password" />
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128"
-                    onClick={togglePasswordVisibility} >
-                    {showPassword ? <IoMdEyeOff color={'#bbb'} size={124} /> : <IoMdEye color={'#bbb'} size={124} />}
-                  </svg>
+                  <span onClick={togglePasswordVisibility} className="cursor-pointer absolute right-2">
+                    {showPassword ? "🙈" : "👁️"}
+                  </span>
                 </div>
               </div>
 

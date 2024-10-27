@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../styles/TopSellingProducts.css"
 import { IoPricetagsOutline } from "react-icons/io5";
 import { PiBagLight } from "react-icons/pi";
+import { Link } from 'react-router-dom';
 
 
 const TopSellingProducts = () => {
@@ -134,12 +135,12 @@ const TopSellingProducts = () => {
                                     <h1 class="text-gray-900 dark:text-white title-font text-lg font-medium text-gray-900 mb-3">{product.productDetails.name}</h1>
                                     <p class="text-gray-900 dark:text-stone-400 leading-relaxed mb-3">{product.productDetails.description}</p>
                                     <div class="flex items-center flex-wrap ">
-                                        <a class="text-purple-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                                        <Link to={`/product/${product.productId}`} class="text-purple-500 inline-flex items-center md:mb-2 lg:mb-0">Details
                                         <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M5 12h14"></path>
                                             <path d="M12 5l7 7-7 7"></path>
                                         </svg>
-                                        </a>
+                                        </Link>
                                         <span class="bg-red-50 text-red-900 mr-3 pt-5 pb-5 px-5 rounded inline-flex items-center  ml-auto leading-none text-xl ">
                                         <PiBagLight/>{product.totalQuantity}
                                         </span>
