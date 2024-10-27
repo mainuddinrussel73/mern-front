@@ -155,7 +155,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <>
+    <div className='bg-white dark:bg-gray-900 min-h-screen flex flex-col'>
        <Helmet>
         <title>Product Details</title>
         <meta name="Details" content="Details page" />
@@ -481,7 +481,7 @@ const ProductDetails = () => {
 
 
 
-    </>
+    </div>
   );
 };
 

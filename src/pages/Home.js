@@ -11,7 +11,7 @@ import FeaturesSection from '../components/Feature';
 import StatisticsSection from '../components/StatSection'
 const Home = () => {
   return (
-    <div className=' bg-gray-100  dark:bg-gray-900 '>
+    <div className=' bg-gray-100  dark:bg-gray-900 min-h-screen flex flex-col'>
       <Helmet>
         <title>Home</title>
         <meta name="home" content="Home page" />

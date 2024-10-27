@@ -99,7 +99,7 @@ const Profile = () => {
   };
 
   return (
-    <div className=' mx-auto p-8  bg-gray-100 dark:bg-gray-900'>
+    <div className=' mx-auto p-8 min-h-screen flex flex-col  bg-gray-100 dark:bg-gray-900'>
       <Helmet>
         <title>Profile {userForm.name}</title>
         <meta name="Userdashboard" content="Userdashboard" />

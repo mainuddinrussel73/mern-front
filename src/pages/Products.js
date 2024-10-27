@@ -31,7 +31,7 @@ const Products = () => {
     return <ErrorLoadingData/>;
   }
   return (
-    <div className=" mx-auto p-8 bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col mx-auto p-8 bg-gray-100 dark:bg-gray-900">
       <Helmet>
         <title>All Products</title>
         <meta name="Products" content="All Product page" />
