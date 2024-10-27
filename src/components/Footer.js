@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="dark:bg-gray-800 dark:text-white text-black bg-slate-50 shadow body-font">
-      <div className="container px-5 shadow py-24 mx-auto">
+      <div className="  px-5 shadow py-24 mx-auto">
         <div className="flex flex-wrap md:text-left text-center -mb-10 -mx-4">
           <div className="lg:w-1/6 md:w-1/2 w-full px-4">
             <h2 className="dark:bg-gray-800 dark:text-white text-gray-900 bg-slate-50 title-font font-medium  tracking-widest text-sm mb-3">
@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-gray-200">
-        <div className="container px-5 py-8 flex flex-wrap mx-auto items-center">
+        <div className=" px-5 py-8 flex flex-wrap mx-auto items-center">
           <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
             <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
               <label htmlFor="footer-field" className="leading-7 text-sm dark:bg-gray-800 dark:text-white text-gray-600 bg-slate-50">
@@ -171,7 +171,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="">
-        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+        <div className="  mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className=" dark:text-white text-gray-500 text-sm text-center sm:text-left">
             © 2024 Your Shop —
             <a

@@ -17,7 +17,7 @@ const StatisticsSection = () => {
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <section className="text-gray-600 dark:text-gray-300 body-font">
-        <div className="container px-5 py-12 mx-auto">
+        <div className=" px-5 py-12 mx-auto">
           <div className="text-center mb-10">
             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 dark:text-gray-100 mb-4">
               Key Statistics

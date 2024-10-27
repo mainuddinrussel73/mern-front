@@ -29,7 +29,7 @@ const FAQ = () => {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900 py-20 px-6">
-      <div className="container mx-auto max-w-5xl">
+      <div className=" mx-auto max-w-5xl">
         {/* Section Title */}
         <h2 className="text-5xl font-extrabold text-center text-gray-900 dark:text-stone-100 mb-16">
           <FaQuestionCircle className="inline-block text-indigo-500 mr-3" />

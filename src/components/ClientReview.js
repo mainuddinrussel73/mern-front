@@ -55,7 +55,7 @@ const StarRating = ({ rating }) => {
 const ClientReviews = () => {
   return (
     <div className=" bg-gray-100 dark:bg-gray-900 py-12">
-      <div className="container mx-auto px-6">
+      <div className="  mx-auto px-6">
         <h2 className="text-gray-900 dark:text-stone-100 text-3xl font-bold text-center mb-8">Client Reviews</h2>
         <div className="grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
           {reviews.map((review) => (

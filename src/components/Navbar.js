@@ -20,7 +20,7 @@ const Navbar = () => {
   };
   return (
     <nav className="dark:bg-gray-800 dark:text-white text-black bg-white	shadow body-font p-4  sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className=" mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="dark:bg-gray-800 dark:text-white text-black bg-white text-3xl font-semibold tracking-wide   transition-all duration-300">
           <FaStore className="inline-block mr-2" /> Sell Bazar
