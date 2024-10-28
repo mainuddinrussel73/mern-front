@@ -78,7 +78,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.put(`http://localhost:5000/api/auth/users/${currentUser.uid}`,{
+        const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/auth/users/${currentUser.uid}`,{
             
             data: {
                   userForm,
